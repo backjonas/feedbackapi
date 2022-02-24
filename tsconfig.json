@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     "baseUrl": "./src",
-    "lib": ["es5", "es6", "dom"],
-    "target": "es5",
+    "lib": ["es2019"],
+    "target": "es2019",
     "module": "commonjs",
     "moduleResolution": "node",
     "outDir": "dist",
