@@ -1,14 +1,16 @@
-import app from './app';
+import 'dotenv/config';
 import http from 'http';
-import {createConnection} from 'typeorm';
+import app from './app';
+import { createConnection } from 'typeorm';
 
-const server = http.createServer(app);
-
-const PORT = process.env.API_PORT || 5000;
-createConnection().then(() => {
-  server.listen(PORT, () => {
-    console.log(`API listening on port ${PORT}`);
-  });
-}).catch((error => {
-  console.log(`Error starting the server: ${error}`);
-}));
+const PORT = process.env.PORT || 5000;
+createConnection()
+  .then(() => {
+    const server = http.createServer(app);
+    server.listen(PORT, () => {
+      console.log(`API listening on port ${PORT}`);
+    });
+  })
+  .catch((error => {
+    console.log(`Error starting the server: ${error}`);
+  }));
