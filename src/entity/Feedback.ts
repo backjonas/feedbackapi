@@ -35,10 +35,27 @@ export const createFeedback = async (feedback: IFeedback) => {
   newFeedback.grade = feedback.grade;
   newFeedback.created = new Date;
 
-  await repo.save(newFeedback);
+  return await repo.save(newFeedback);
 };
 
 export const getAllFeedback = async () => {
   const repo = getRepository(Feedback);
   return await repo.find();
+};
+
+export const getFeedbackById = async (id) => {
+  const repo = getRepository(Feedback);
+  return await repo.findOne(id);
+};
+
+export const deleteFeedbackById = async (id) => {
+  const repo = getRepository(Feedback);
+  return await repo.delete(id);
+};
+
+export const updateFeedback = async (newFeedback: IFeedback, id) => {
+  const repo = getRepository(Feedback);
+  const oldFeedback = await repo.findOne(id);
+  repo.merge(oldFeedback, newFeedback);
+  return await repo.save(oldFeedback);
 };
