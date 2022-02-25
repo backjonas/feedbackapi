@@ -7,7 +7,9 @@ module.exports = {
   'synchronize': true,
   'logging': false,
   'entities': [
-    'src/entity/**/*.ts'
+    process.env.NODE_ENV === 'production'
+      ? 'dist/**/*.entity{.ts,.js}'
+      : 'src/entity/**/*.ts'
   ],
   'migrations': [
     'src/migration/**/*.ts'
